@@ -12,6 +12,9 @@ $RECYCLE.BIN/
 *.log
 log.txt
 
+# pnpm
+pnpm-lock.yaml
+
 
 /.sourcemaps
 /.versions
