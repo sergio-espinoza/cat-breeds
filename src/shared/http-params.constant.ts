@@ -1,0 +1,2 @@
+export const DEFAULT_PAGINATION_LIMIT = 5;
+export const DEFAULT_PAGINATION_PAGE = 0;

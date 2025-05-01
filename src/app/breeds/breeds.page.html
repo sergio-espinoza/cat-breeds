@@ -1,17 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Breeds
-    </ion-title>
+    <ion-title>CatBreeds</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" role="feed">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Breeds</ion-title>
+      <ion-title size="large">CatBreeds</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-searchbar></ion-searchbar>
+
+  @for (breed of breeds(); track breed.id; let index = $index) {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nombre de raza: {{ breed.name }}</ion-card-title>
+      <ion-card-subtitle>Pais de Origen: {{ breed.origin }} </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-img [src]="breed.image?.url" [alt]="breed.name"></ion-img>
+      <div>Inteligencia: {{ breed.intelligence }}</div>
+    </ion-card-content>
+  </ion-card>
+  }
+  <ion-infinite-scroll (ionInfinite)="handleIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
