@@ -16,6 +16,10 @@ log.txt
 pnpm-lock.yaml
 
 
+# npm
+package-lock.json
+
+
 /.sourcemaps
 /.versions
 /coverage
