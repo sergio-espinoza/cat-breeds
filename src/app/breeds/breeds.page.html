@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>CatBreeds</ion-title>
+    <ion-title class="ta--center">CatBreeds</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,24 +11,36 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-searchbar></ion-searchbar>
+  <ion-searchbar class="breeds__search" [formControl]="filterTerm"></ion-searchbar>
 
   @for (breed of breeds(); track breed.id; let index = $index) {
-  <ion-card>
-    <ion-button shape="round" color="light" [routerLink]="['/breed', breed.id]">
-      <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
-    </ion-button>
-    <ion-card-header>
-      <ion-card-title>Nombre de raza: {{ breed.name }}</ion-card-title>
-      <ion-card-subtitle>Pais de Origen: {{ breed.origin }} </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-img [src]="breed.image?.url" [alt]="breed.name"></ion-img>
-      <div>Inteligencia: {{ breed.intelligence }}</div>
-    </ion-card-content>
+  <ion-card class="breed">
+    <ion-list lines="none">
+      <ion-item>
+        <ion-card-title>
+          <ion-label>
+            Nombre de raza: {{ breed.name }}
+          </ion-label>
+        </ion-card-title>
+        <ion-button slot="end" shape="round" color="light" [routerLink]="['/breed', breed.id]">
+          <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-card-subtitle>
+          Pais de Origen: {{ breed.origin }}
+        </ion-card-subtitle>
+      </ion-item>
+      <ion-item>
+        <ion-img class="cb-img--fill-center w--100p h--20rem" [src]="breed.image?.url" [alt]="breed.name"></ion-img>
+      </ion-item>
+      <ion-item>
+        <ion-label>Inteligencia: {{ breed.intelligence }}</ion-label>
+      </ion-item>
+    </ion-list>
   </ion-card>
   }
-  <ion-infinite-scroll (ionInfinite)="handleIonInfinite($event)">
+  <ion-infinite-scroll (ionInfinite)="handleIonInfinite($event)" [disabled]="!canScroll()">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 
 import BreedsPage from './breeds.page';
 import { BreedsService } from './breeds.service';
-import { Breed } from './breeds.interface';
+import { BreedItem } from './breeds.interface';
 import { CAT_BREEDS_LITE } from './breeds.data';
 import { DEFAULT_PAGINATION_LIMIT } from 'src/shared/http-params.constant';
 import { tap } from 'rxjs';
@@ -28,7 +28,7 @@ describe('BreedsService', () => {
   let service: BreedsService;
   let httpMock: HttpTestingController;
 
-  const mockBreeds: Pick<Breed, 'name' | 'id'>[] = CAT_BREEDS_LITE.slice();
+  const mockBreeds: Pick<BreedItem, 'name' | 'id'>[] = CAT_BREEDS_LITE.slice();
 
   const currentPage = Math.floor(Math.random() * 14); // From 0 to 13
   const indexToAdjust = currentPage === 13 ? 3 : 0;
@@ -39,7 +39,7 @@ describe('BreedsService', () => {
   const mockBreedCurrentIdx = breedLimitInPage - idxToSubstractInPage;
 
   const mockBreedToCheck = mockBreeds[mockBreedCurrentIdx];
-  let breedsFromResponse: Breed[] = [];
+  let breedsFromResponse: BreedItem[] = [];
 
   beforeEach(async () => {
     TestBed.configureTestingModule({

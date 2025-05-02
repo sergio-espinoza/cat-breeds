@@ -13,10 +13,13 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonButton,
-  IonIcon
+  IonIcon,
+  IonItem,
+  IonList,
+  IonLabel
 } from '@ionic/angular/standalone';
 
-export const ION_STANDALONE = [
+export const ION_BREEDS_STANDALONE = [
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -31,6 +34,9 @@ export const ION_STANDALONE = [
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonButton,
-  IonIcon
+  IonIcon,
+  IonItem,
+  IonList,
+  IonLabel
 ];
 

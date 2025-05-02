@@ -1,17 +1,20 @@
-import { Component, Injector, OnInit, Signal, computed, inject, input } from '@angular/core';
+import { Component, Injector, OnInit, Signal, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { Breed } from '../breeds/breeds.interface';
 import { BreedService } from './breed.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { IMG_CDN_EXTENSION, IMG_CDN_URL, ION_BREED_STANDALONE } from './breed.constant';
+import { Breed } from './breed.interface';
+import { map } from 'rxjs';
+
+type FormattedBreed = Breed | null;
 
 @Component({
   selector: 'app-breed',
-  templateUrl: './breed.page.html',
-  styleUrls: ['./breed.page.scss'],
+  templateUrl: 'breed.page.html',
+  styleUrls: ['breed.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [...ION_BREED_STANDALONE, CommonModule, FormsModule]
 })
 export default class BreedPage implements OnInit {
   public id = input<string>('');
@@ -19,7 +22,7 @@ export default class BreedPage implements OnInit {
   private _Injector = inject(Injector);
   private _BreedSvc = inject(BreedService);
 
-  public breed!: Signal<Breed>;
+  public breed!: Signal<FormattedBreed>;
 
   constructor() { }
 
@@ -28,9 +31,17 @@ export default class BreedPage implements OnInit {
   }
 
   private loadBreed() {
-    this.breed = toSignal(this._BreedSvc.getBreed(this.id()), {
-      injector: this._Injector,
-      initialValue: {} as Breed
-    });
+    this.breed = toSignal(
+      this._BreedSvc.getBreed(this.id()).pipe(
+        map(breedResp => this.formatBreed(breedResp))
+      ),
+      { injector: this._Injector, initialValue: null }
+    );
+  }
+
+  private formatBreed(breed: FormattedBreed): FormattedBreed {
+    const imageUrl = `${IMG_CDN_URL}/${(breed as Breed).reference_image_id}.${IMG_CDN_EXTENSION}`;
+
+    return { ...breed, imageUrl } as FormattedBreed;
   }
 }

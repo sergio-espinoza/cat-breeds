@@ -2,11 +2,16 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.routes'),
+    path: 'breeds',
+    loadComponent: () => import('./breeds/breeds.page'),
   },
   {
     path: 'breed/:id',
     loadComponent: () => import('./breed/breed.page')
-  }
+  },
+  {
+    path: '',
+    redirectTo: '/breeds',
+    pathMatch: 'full',
+  },
 ];
