@@ -11,7 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-searchbar [formControl]="filterTerm"></ion-searchbar>
+  <ion-searchbar class="breeds__search" [formControl]="filterTerm"></ion-searchbar>
 
   @for (breed of breeds(); track breed.id; let index = $index) {
   <ion-card class="breed">
