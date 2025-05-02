@@ -15,8 +15,6 @@ git clone https://github.com/sergio-espinoza/cat-breeds.git
 cd cat-breeds
 npm install
 ionic build
-ionic cap add android
-ionic cap add ios
 ionic cap copy
 ionic cap sync
 ionic cap open android
