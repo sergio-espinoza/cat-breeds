@@ -4,6 +4,7 @@ import { BreedsService } from './breeds.service';
 import { Breed } from './breeds.interface';
 import { DEFAULT_PAGINATION_LIMIT, DEFAULT_PAGINATION_PAGE } from 'src/shared/http-params.constant';
 import { InfiniteScrollCustomEvent } from '@ionic/angular/standalone';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-breeds',
@@ -33,11 +34,13 @@ export default class BreedsPage implements OnInit {
     this._BreedSvc.getBreeds({
       page
     })
+      .pipe(
+        finalize(() => this.updateCurrentPage())
+      )
       .subscribe(entryBreeds => {
+        this.updateBreeds(entryBreeds);
 
         scrollEvent && this.scrollActions(scrollEvent, entryBreeds.length);
-        this.updateBreeds(entryBreeds);
-        this.updateCurrentPage();
       });
   }
 
