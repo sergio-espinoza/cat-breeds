@@ -11,8 +11,8 @@ type FormattedBreed = Breed | null;
 
 @Component({
   selector: 'app-breed',
-  templateUrl: './breed.page.html',
-  styleUrls: ['./breed.page.scss'],
+  templateUrl: 'breed.page.html',
+  styleUrls: ['breed.page.scss'],
   standalone: true,
   imports: [...ION_BREED_STANDALONE, CommonModule, FormsModule]
 })

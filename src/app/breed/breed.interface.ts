@@ -1,5 +1,5 @@
 export interface Breed {
-  weight: BreedWeight;
+  weight?: BreedWeight;
   id: string;
   name: string;
   cfa_url: string;

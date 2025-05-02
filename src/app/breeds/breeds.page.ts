@@ -4,9 +4,19 @@ import { BreedsService } from './breeds.service';
 import { BreedItem } from './breeds.interface';
 import { DEFAULT_PAGINATION_LIMIT, DEFAULT_PAGINATION_PAGE } from 'src/shared/http-params.constant';
 import { InfiniteScrollCustomEvent } from '@ionic/angular/standalone';
-import { debounceTime, distinctUntilChanged, filter, finalize, map, Subscription, switchMap, tap } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+  Subscription,
+  switchMap,
+  tap
+} from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
+import { Keyboard } from '@capacitor/keyboard';
+import { PlatformService } from 'src/global/platform.service';
 
 @Component({
   selector: 'app-breeds',
@@ -18,6 +28,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export default class BreedsPage implements OnInit, OnDestroy {
   private _BreedSvc = inject(BreedsService);
+  private _PlatformSvc = inject(PlatformService);
+
   public breeds = signal<BreedItem[]>([]);
   public currentPage = signal(DEFAULT_PAGINATION_PAGE);
 
@@ -87,7 +99,11 @@ export default class BreedsPage implements OnInit, OnDestroy {
         this.updateBreeds(breedsResponse);
         this.updateCurrentPage();
       })
-    ).subscribe();
+    ).subscribe(_ => {
+      if (!this._PlatformSvc.isMobilePlatform()) return;
+
+      Keyboard.hide();
+    });
 
     this.subscription.add(changeFilterSub);
   }
