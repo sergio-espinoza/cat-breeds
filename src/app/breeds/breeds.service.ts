@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Breed, BreedsQueryParams } from './breeds.interface';
+import { BreedItem, BreedsQueryParams } from './breeds.interface';
 import { Observable } from 'rxjs';
 import { DEFAULT_PAGINATION_LIMIT, DEFAULT_PAGINATION_PAGE } from 'src/shared/http-params.constant';
 
@@ -11,10 +11,13 @@ export class BreedsService {
 
   getBreeds({
     page = DEFAULT_PAGINATION_PAGE,
-    limit = DEFAULT_PAGINATION_LIMIT
-  }: BreedsQueryParams): Observable<Breed[]> {
-    return this._Http.get<Breed[]>(
-      `${environment.API_URL}?limit=${limit}&page=${page}`
+    limit = DEFAULT_PAGINATION_LIMIT,
+    searchTerm = ''
+  }: BreedsQueryParams): Observable<BreedItem[]> {
+    const urlExtension = searchTerm ? `/search?q=${searchTerm}&` : '?';
+
+    return this._Http.get<BreedItem[]>(
+      `${environment.API_URL}${urlExtension}limit=${limit}&page=${page}`
     );
   }
 }

@@ -1,10 +1,10 @@
-export interface BreedItem {
-  weight: BreedItemWeight;
+export interface Breed {
+  weight: BreedWeight;
   id: string;
   name: string;
-  cfa_url?: string;
-  vetstreet_url?: string;
-  vcahospitals_url?: string;
+  cfa_url: string;
+  vetstreet_url: string;
+  vcahospitals_url: string;
   temperament: string;
   origin: string;
   country_codes: string;
@@ -12,8 +12,8 @@ export interface BreedItem {
   description: string;
   life_span: string;
   indoor: number;
-  lap?: number;
-  alt_names?: string;
+  lap: number;
+  alt_names: string;
   adaptability: number;
   affection_level: number;
   child_friendly: number;
@@ -33,28 +33,13 @@ export interface BreedItem {
   rex: number;
   suppressed_tail: number;
   short_legs: number;
-  wikipedia_url?: string;
+  wikipedia_url: string;
   hypoallergenic: number;
-  reference_image_id?: string;
-  image?: BreedItemImage;
-  cat_friendly?: number;
-  bidability?: number;
+  reference_image_id: string;
+  imageUrl?: string;
 }
 
-export interface BreedItemImage {
-  id: string;
-  width: number;
-  height: number;
-  url: string;
-}
-
-export interface BreedItemWeight {
+export interface BreedWeight {
   imperial: string;
   metric: string;
-}
-
-export interface BreedsQueryParams {
-  limit?: number;
-  page: number;
-  searchTerm?: string;
 }
