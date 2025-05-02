@@ -1,5 +1,5 @@
-export interface Breed {
-  weight: BreedWeight;
+export interface BreedItem {
+  weight: BreedItemWeight;
   id: string;
   name: string;
   cfa_url?: string;
@@ -36,19 +36,19 @@ export interface Breed {
   wikipedia_url?: string;
   hypoallergenic: number;
   reference_image_id?: string;
-  image?: BreedImage;
+  image?: BreedItemImage;
   cat_friendly?: number;
   bidability?: number;
 }
 
-export interface BreedImage {
+export interface BreedItemImage {
   id: string;
   width: number;
   height: number;
   url: string;
 }
 
-export interface BreedWeight {
+export interface BreedItemWeight {
   imperial: string;
   metric: string;
 }
@@ -56,4 +56,5 @@ export interface BreedWeight {
 export interface BreedsQueryParams {
   limit?: number;
   page: number;
+  searchTerm?: string;
 }
