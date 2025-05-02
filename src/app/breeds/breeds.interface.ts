@@ -53,7 +53,7 @@ export interface BreedWeight {
   metric: string;
 }
 
-export interface BreedQueryParams {
+export interface BreedsQueryParams {
   limit?: number;
   page: number;
 }

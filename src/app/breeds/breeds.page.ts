@@ -5,13 +5,14 @@ import { Breed } from './breeds.interface';
 import { DEFAULT_PAGINATION_LIMIT, DEFAULT_PAGINATION_PAGE } from 'src/shared/http-params.constant';
 import { InfiniteScrollCustomEvent } from '@ionic/angular/standalone';
 import { finalize } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-breeds',
   templateUrl: 'breeds.page.html',
   styleUrls: ['breeds.page.scss'],
   imports: [
-    ...ION_STANDALONE
+    ...ION_STANDALONE, RouterLink
   ],
 })
 export default class BreedsPage implements OnInit {
@@ -54,8 +55,8 @@ export default class BreedsPage implements OnInit {
     this.currentPage.update(page => page + 1);
   }
 
-  scrollActions(event: InfiniteScrollCustomEvent, itemSize = 0) {
-    if (itemSize < DEFAULT_PAGINATION_LIMIT) {
+  scrollActions(event: InfiniteScrollCustomEvent, listSize = 0) {
+    if (listSize < DEFAULT_PAGINATION_LIMIT) {
       event.target.disabled = true;
     }
 

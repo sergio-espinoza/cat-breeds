@@ -11,7 +11,9 @@ import {
   IonCardContent,
   IonImg,
   IonInfiniteScroll,
-  IonInfiniteScrollContent
+  IonInfiniteScrollContent,
+  IonButton,
+  IonIcon
 } from '@ionic/angular/standalone';
 
 export const ION_STANDALONE = [
@@ -27,6 +29,8 @@ export const ION_STANDALONE = [
   IonCardContent,
   IonImg,
   IonInfiniteScroll,
-  IonInfiniteScrollContent
+  IonInfiniteScrollContent,
+  IonButton,
+  IonIcon
 ];
 

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
-export const routes: Routes = [
+const tabRoutes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
@@ -32,3 +32,5 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 ];
+
+export default tabRoutes;

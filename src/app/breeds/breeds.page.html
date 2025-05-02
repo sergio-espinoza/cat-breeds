@@ -15,6 +15,9 @@
 
   @for (breed of breeds(); track breed.id; let index = $index) {
   <ion-card>
+    <ion-button shape="round" color="light" [routerLink]="['/breed', breed.id]">
+      <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+    </ion-button>
     <ion-card-header>
       <ion-card-title>Nombre de raza: {{ breed.name }}</ion-card-title>
       <ion-card-subtitle>Pais de Origen: {{ breed.origin }} </ion-card-subtitle>
